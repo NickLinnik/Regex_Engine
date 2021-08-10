@@ -1,0 +1,51 @@
+import unittest
+import regex
+
+
+class TestRegex(unittest.TestCase):
+    def test_main(self):
+        self.assertTrue(regex.main('\.$|end.'))
+        self.assertTrue(regex.main('.?$|'))
+        self.assertTrue(regex.main('no+pe|noooooooope'))
+        self.assertTrue(regex.main('|'))
+        self.assertTrue(regex.main('^|'))
+        self.assertTrue(regex.main('|a'))
+        self.assertTrue(regex.main('s?|'))
+        self.assertTrue(regex.main('.?$|'))
+        self.assertTrue(regex.main('$|'))
+        self.assertTrue(regex.main('^$|'))
+        self.assertTrue(regex.main('le$|apple'))
+        self.assertTrue(regex.main('le$|apple'))
+        self.assertTrue(regex.main('^a|apple'))
+        self.assertTrue(regex.main('.$|apple'))
+        self.assertTrue(regex.main('apple$|tasty apple'))
+        self.assertTrue(regex.main('^apple$|apple'))
+        self.assertFalse(regex.main('^apple$|tasty apple'))
+        self.assertFalse(regex.main('^apple$|apple pie'))
+        self.assertFalse(regex.main('app$|apple'))
+        self.assertTrue(regex.main('^no+pe$|noooooooope'))
+        self.assertTrue(regex.main('word.?word|wordword'))
+        self.assertTrue(regex.main('word.?word|word_word'))
+        self.assertTrue(regex.main('^app|apple'))
+        self.assertTrue(regex.main('^apple|apple pie'))
+        self.assertFalse(regex.main('^le|apple'))
+        self.assertFalse(regex.main('word死?word|word_word'))
+        self.assertTrue(regex.main('word死?word|wordword'))
+        self.assertTrue(regex.main('word死*word|word死word'))
+        self.assertTrue(regex.main('word死*死word|word死死word'))
+        self.assertTrue(regex.main('word死*死死*word|word死死word'))
+        self.assertTrue(regex.main('word死+死死+word|word死死死死死word'))
+        self.assertTrue(regex.main('word死+死死+word|word死死死word'))
+        self.assertTrue(regex.main('word死+死死*死+死*word|word死死死word'))
+        self.assertTrue(regex.main('word死+死s?死?ss*ss+死*死+死*word死*|word死死死sssssss死死word'))
+        self.assertTrue(regex.main('word死+死s?死?ss*ss+死*死+死*word死+|word死死死sssssss死死word死死'))
+        self.assertTrue(regex.main('w+ord死+死s?死?ss*ss+死*死+死*word死+|word死死死sssssss死死word死死'))
+        self.assertTrue(regex.main('死?word死+死s?死?ss*ss+死*死+死*word死+|word死死死sssssss死死word死死'))
+        self.assertTrue(regex.main('死*word死+死s?死?ss*ss+死*死+死*word死+|word死死死sssssss死死word死死'))
+        self.assertTrue(regex.main('死*word死+死s?死?ss*死+s+死*ss+死*死+死*word死+|word死死死sss死ssss死死word死死'))
+        self.assertFalse(regex.main('word死+死s?死?ss*ss+死*死+死*word死+|word死死死sss死ssss死死word死死'))
+        self.assertFalse(regex.main('word死+死死*死+死*word|word死死word'))
+
+
+if __name__ == '__main__':
+    unittest.main()
